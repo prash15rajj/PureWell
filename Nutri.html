@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Plate Puzzle</title>
+    <link rel="stylesheet" href="styleN.css">
+</head>
+<body>
+    <h1>Healthy Plate Puzzle</h1>
+    <div id="game-info">
+        <div id="score">Score: 0</div>
+        <div id="timer">Time: 60s</div>
+        <div id="level">Level: 1</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="plate">
+        <div id="vegetables" class="dropzone" data-type="Vegetables">Vegetables</div>
+        <div id="fruits" class="dropzone" data-type="Fruits">Fruits</div>
+        <div id="proteins" class="dropzone" data-type="Proteins">Proteins</div>
+        <div id="grains" class="dropzone" data-type="Grains">Grains</div>
+    </div>
+    <div id="food-items">
+        <div class="food-item" draggable="true" data-type="Vegetables">Spinach</div>
+        <div class="food-item" draggable="true" data-type="Fruits">Apple</div>
+        <div class="food-item" draggable="true" data-type="Proteins">Chicken</div>
+        <div class="food-item" draggable="true" data-type="Grains">Rice</div>
+    </div>
+    <div id="hint"></div>
+    <script src="scriptN.js"></script>
+    
+</body>
+</html>

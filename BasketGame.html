@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Relief Catcher</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .game-container {
+            position: relative;
+            overflow: hidden;
+            width: 800px; /* Set width and height of the game area */
+            height: 600px;
+            border: 1px solid black;
+        }
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(2px); /* Apply blur effect to the overlay */
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+        canvas {
+            display: block;
+            position: relative;
+            z-index: 1; /* Ensure canvas is above the overlay */
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div class="game-overlay"></div> <!-- Overlay for blur effect -->
+    </div>
+    <div class="controls">
+        <button id="pauseResumeButton">Pause</button>
+        <button id="stopStartButton">Stop</button>
+    </div>
+    <script src="GameManager.js"></script>
+    <script src="PlayerController.js"></script>
+    <script src="FallingObject.js"></script>
+    <script>
+        let gameManager;
+        let player;
+        let fallingObjects = [];
+        let obstacles = [];
+        let powerUps = [];
+        let isPaused = false;
+        let isStopped = false;
+
+        const pauseResumeButton = document.getElementById('pauseResumeButton');
+        const stopStartButton = document.getElementById('stopStartButton');
+
+        function initializeGame() {
+            gameManager = new GameManager();
+            player = new PlayerController(400, 500, 5, gameManager);
+            fallingObjects = [];
+            obstacles = [];
+            powerUps = [];
+
+            // Create falling objects
+            for (let i = 0; i < 5; i++) {
+                fallingObjects.push(new FallingObject(Math.random() * 800, -Math.random() * 600, "😊", "positive", gameManager));
+            }
+
+            // Create obstacles
+            for (let i = 0; i < 3; i++) {
+                obstacles.push(new FallingObject(Math.random() * 800, -Math.random() * 600, "😡", "negative", gameManager));
+            }
+
+            // Create power-ups
+            powerUps.push(new FallingObject(Math.random() * 800, -Math.random() * 600, "⭐", "powerUp", gameManager));
+        }
+
+        function togglePauseResume() {
+            isPaused = !isPaused;
+            pauseResumeButton.textContent = isPaused ? 'Resume' : 'Pause';
+        }
+
+        function stopStartGame() {
+            isStopped = !isStopped;
+            stopStartButton.textContent = isStopped ? 'Start' : 'Stop';
+            if (isStopped) {
+                isPaused = true;
+            } else {
+                initializeGame();
+                isPaused = false;
+                gameLoop();
+            }
+        }
+
+        pauseResumeButton.addEventListener('click', togglePauseResume);
+        stopStartButton.addEventListener('click', stopStartGame);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                togglePauseResume();
+            }
+            if (e.key === 'Escape') {
+                stopStartGame();
+            }
+        });
+
+        function gameLoop() {
+            if (!isPaused && !isStopped) {
+                clearCanvas();
+                player.update();
+                fallingObjects.forEach(object => object.update(player));
+                obstacles.forEach(object => object.update(player));
+                powerUps.forEach(object => object.update(player));
+                gameManager.displayScore();
+                gameManager.displayLevel();
+            }
+            requestAnimationFrame(gameLoop);
+        }
+
+        function clearCanvas() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        initializeGame();
+        gameLoop();
+    </script>
+</body>
+</html>

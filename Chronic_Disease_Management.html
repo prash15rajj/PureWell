@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronic Disease Management - PureWell</title>
+    <link rel="icon" type="image/png" href="Logo.png">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e0ffff, #f0ffff); /* Match gradient background from homepage */
+            color: #004d40; /* Text color */
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: #004d40;
+        }
+
+        .nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav ul li {
+            margin-left: 20px;
+        }
+
+        .nav ul li:first-child {
+            margin-left: 0;
+        }
+
+        .nav ul li a {
+            color: #004d40;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav ul li a:hover {
+            color: #00897b;
+        }
+
+        .button {
+            background-color: #004d40;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #00897b;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .section {
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px); /* Adding blur effect */
+            border-radius: 10px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            color: #004d40;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .content p {
+            margin-bottom: 10px;
+        }
+
+        .tools {
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .tools h3 {
+            font-size: 20px;
+            color: #004d40;
+            margin-bottom: 10px;
+        }
+
+        .tools p {
+            margin-bottom: 10px;
+        }
+
+        .disease {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Increased shadow for depth */
+            background-color: #f0f0f0; /* Light gray background */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+            cursor: pointer;
+        }
+
+        .disease:hover {
+            transform: translateY(-5px); /* Example hover effect */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Adjusted shadow on hover */
+        }
+
+        .disease h3 {
+            font-size: 18px;
+            color: #004d40;
+            margin-bottom: 10px;
+        }
+
+        .disease p {
+            margin-bottom: 10px;
+            display: none; /* Hide disease information by default */
+            color: #333; /* Adjusted text color */
+        }
+
+        .disease:hover p {
+            display: block; /* Show disease information on hover */
+        }
+
+        footer {
+            background-color: #ddd;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="home">
+        <div class="logo">
+            PureWell
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="homeImage.avif">Home</a></li>
+                <li><a href="HomePage.html">About</a></li>
+                <li><a href="BMI.html">BMI Calculator</a></li>
+                <li><a href="Diet_Planner.html">Diet Planner</a></li>
+                <li><a href="Games.html">Games</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="button">Try Demo</button>
+    </header>
+
+    <main>
+        <section id="chronic-disease" class="section">
+            <div class="content">
+                <h2>Chronic Disease Management</h2>
+                <p>Explore tools for managing chronic conditions effectively with PureWell's comprehensive resources.</p>
+
+                <div class="tools">
+                    <h3>Tools for Managing Chronic Diseases</h3>
+                    <p>Hover over a disease to see more information:</p>
+                    
+                    <div class="diseases">
+                        <!-- Disease items will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 PureWell. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sample diseases data (subset for demonstration)
+        const diseases = [
+            { name: "Alzheimer's Disease", info: "Alzheimer's disease is a progressive neurodegenerative disorder that affects memory, thinking skills, and behavior." },
+            { name: "Atrial Fibrillation", info: "Atrial fibrillation is an irregular heart rhythm that can lead to blood clots, stroke, heart failure, and other heart-related complications." },
+            { name: "Attention Deficit Hyperactivity Disorder (ADHD)", info: "ADHD is a neurodevelopmental disorder that affects an individual's ability to focus, control impulses, and manage hyperactivity." },
+            { name: "Autoimmune diseases", info: "Includes ulcerative colitis, lupus erythematosus, Crohn's disease, coeliac disease, Hashimoto's thyroiditis, and relapsing polychondritis." },
+            { name: "Blindness", info: "Complete or severe vision loss that cannot be corrected with glasses or contact lenses." },
+            { name: "Cerebral Palsy", info: "A group of disorders that affect movement and posture due to damage or abnormalities in the brain." },
+            { name: "Chronic Graft-versus-Host Disease", info: "A complication that can occur after a stem cell or bone marrow transplant where donor cells attack the recipient's body." },
+            { name: "Chronic Hepatitis", info: "Persistent inflammation of the liver lasting more than six months, often caused by viral infections or autoimmune disorders." },
+            { name: "Chronic Pancreatitis", info: "Inflammation of the pancreas that does not heal or improve, leading to permanent damage and impairment of pancreatic function." },
+            { name: "Chronic Kidney Disease", info: "Progressive loss of kidney function over time, often caused by diabetes, high blood pressure, or other conditions." },
+            { name: "Chronic Osteoarticular Diseases", info: "Includes osteoarthritis and rheumatoid arthritis, chronic conditions affecting joints, cartilage, and surrounding tissues." },
+            { name: "Chronic Pain Syndromes", info: "Includes conditions like post-vasectomy pain syndrome and complex regional pain syndrome, causing persistent pain." },
+            { name: "Dermatological Conditions", info: "Skin disorders such as atopic dermatitis (eczema) and psoriasis, characterized by inflammation and irritation of the skin." },
+            { name: "Deafness and Hearing Impairment", info: "Partial or complete loss of hearing ability, often caused by genetic factors, aging, or exposure to loud noise." },
+            { name: "Ehlers–Danlos Syndrome", info: "A group of connective tissue disorders that affect skin, joints, and blood vessel walls, causing hypermobility and fragility." },
+            { name: "Endometriosis", info: "A painful disorder where tissue similar to the lining inside the uterus (endometrium) grows outside the uterus." },
+            { name: "Epilepsy", info: "A neurological disorder characterized by recurrent seizures, affecting the brain's electrical activity." },
+            { name: "Fetal Alcohol Spectrum Disorder", info: "A group of conditions that can occur in a person whose mother drank alcohol during pregnancy, causing physical, behavioral, and learning problems." },
+            { name: "Fibromyalgia", info: "A chronic disorder characterized by widespread musculoskeletal pain, fatigue, and tenderness in localized areas." },
+            { name: "HIV/AIDS", info: "Human Immunodeficiency Virus (HIV) is a virus that attacks the body's immune system, leading to acquired immunodeficiency syndrome (AIDS)." },
+            { name: "Hereditary Spherocytosis", info: "An inherited blood disorder characterized by abnormal red blood cells that are sphere-shaped and fragile, leading to anemia." },
+            { name: "Huntington's Disease", info: "A genetic disorder that causes progressive degeneration of nerve cells in the brain, affecting movement, cognitive function, and behavior." },
+            { name: "Hypertension", info: "High blood pressure, a condition where the force of blood against artery walls is consistently too high." },
+            { name: "Mental Illness", info: "A wide range of conditions affecting mood, thinking, and behavior, including depression, anxiety disorders, schizophrenia, and bipolar disorder." },
+            { name: "Migraines", info: "Recurrent, severe headaches often accompanied by other symptoms like nausea, sensitivity to light and sound." },
+            { name: "Multiple Sclerosis", info: "A chronic autoimmune disorder where the immune system attacks the protective covering of nerves (myelin) in the brain and spinal cord." },
+            { name: "Myalgic Encephalomyelitis (Chronic Fatigue Syndrome)", info: "A complex disorder characterized by extreme fatigue that does not improve with rest and may worsen with physical or mental activity." },
+            { name: "Narcolepsy", info: "A chronic sleep disorder characterized by excessive daytime sleepiness, sudden loss of muscle tone (cataplexy), and disrupted nighttime sleep." },
+            { name: "Obesity", info: "Excessive body weight that increases the risk of other health problems, often caused by genetic, environmental, and behavioral factors." },
+            { name: "Osteoporosis", info: "A condition characterized by weakened bones that are more susceptible to fractures, often due to loss of bone density with aging." },
+            { name: "Parkinson's Disease", info: "A progressive nervous system disorder that affects movement, causing tremors, stiffness, and difficulty with balance and coordination." },
+            { name: "Periodontal Disease", info: "Chronic inflammation of the gums and supporting structures of the teeth, leading to tooth loss if left untreated." },
+            { name: "Polycystic Ovarian Syndrome (PCOS)", info: "A hormonal disorder common among women of reproductive age, causing enlarged ovaries with small cysts on the outer edges." },
+            { name: "Postural Orthostatic Tachycardia Syndrome (POTS)", info: "A disorder characterized by orthostatic intolerance, where symptoms worsen upon standing, causing dizziness, fainting, and rapid heartbeat." },
+            { name: "Sickle Cell Anemia and Other Hemoglobin Disorders", info: "Inherited blood disorders affecting red blood cells, such as sickle cell anemia, thalassemia, and other hemoglobinopathies." },
+            { name: "Substance Abuse Disorders", info: "Addiction disorders involving the misuse of substances like alcohol, drugs, and prescription medications, leading to physical and psychological harm." },
+            { name: "Sleep Apnea", info: "A sleep disorder characterized by pauses in breathing or shallow breaths during sleep, leading to disrupted sleep and daytime drowsiness." },
+            { name: "Thyroid Disease", info: "Disorders affecting the thyroid gland, including hyperthyroidism (overactive thyroid) and hypothyroidism (underactive thyroid)." },
+            { name: "Tuberculosis (TB)", info: "An infectious disease caused by bacteria (Mycobacterium tuberculosis), typically affecting the lungs but can spread to other parts of the body." }
+        ];
+
+        // Function to dynamically generate disease items
+        function generateDiseaseItems() {
+            const diseasesContainer = document.querySelector('.diseases');
+
+            diseases.forEach(disease => {
+                const diseaseElement = document.createElement('div');
+                diseaseElement.classList.add('disease');
+
+                const diseaseName = document.createElement('h3');
+                diseaseName.textContent = disease.name;
+
+                const diseaseInfo = document.createElement('p');
+                diseaseInfo.textContent = disease.info;
+
+                diseaseElement.appendChild(diseaseName);
+                diseaseElement.appendChild(diseaseInfo);
+
+                diseasesContainer.appendChild(diseaseElement);
+            });
+        }
+
+        // Call function to generate disease items
+        generateDiseaseItems();
+    </script>
+</body>
+</html>
